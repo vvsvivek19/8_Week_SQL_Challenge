@@ -84,7 +84,7 @@ FROM ranked_products
 WHERE rank = 1
 ORDER BY customer_id;
 
-
+/*Really good ranking question*/
 -- Q6
 WITH ranked_orders AS (
     SELECT 
@@ -94,7 +94,7 @@ WITH ranked_orders AS (
         DENSE_RANK() OVER (
             PARTITION BY s.customer_id 
             ORDER BY s.order_date, s.product_id
-        ) AS rank
+        ) AS order_rank
     FROM sales s
     JOIN members mem 
         ON s.customer_id = mem.customer_id
@@ -107,7 +107,7 @@ SELECT
     order_date,
     product_name
 FROM ranked_orders
-WHERE rank = 1;
+WHERE order_rank = 1;
 
 
 -- Q7
@@ -119,7 +119,7 @@ WITH ranked_orders AS (
         DENSE_RANK() OVER (
             PARTITION BY s.customer_id 
             ORDER BY s.order_date DESC, s.product_id
-        ) AS rank
+        ) AS order_rank
     FROM sales s
     JOIN members mem 
         ON s.customer_id = mem.customer_id
@@ -132,7 +132,7 @@ SELECT
     order_date,
     product_name
 FROM ranked_orders
-WHERE rank = 1;
+WHERE order_rank = 1;
 
 
 -- Q8
@@ -164,7 +164,7 @@ JOIN menu m
     ON s.product_id = m.product_id
 GROUP BY s.customer_id;
 
-
+/*Nice Question to test your if/else logic*/
 -- Q10
 SELECT 
     s.customer_id,
@@ -187,7 +187,7 @@ WHERE s.order_date <= '2021-01-31'
 GROUP BY s.customer_id;
 
 
--- Q11: Join All The Things
+-- Q11 (Bonus Question): Join All The Things
 SELECT 
     s.customer_id,
     s.order_date,
@@ -203,3 +203,35 @@ LEFT JOIN members mem
     ON s.customer_id = mem.customer_id
 JOIN menu m 
     ON s.product_id = m.product_id;
+
+-- Q12 (Bonus Question): Rank All The Things
+/* ⭐ Frequent Interview Question: Tests ability to combine CTEs, Conditional Logic (CASE), and Window Functions (RANK) ⭐ */
+
+WITH CTE_Membership_record AS
+(
+	SELECT 
+		s.customer_id,
+		s.order_date,
+		m.product_name,
+		m.price,
+		CASE 
+			WHEN mem.customer_id IS NOT NULL 
+				 AND s.order_date >= mem.join_date THEN 'Y'
+			ELSE 'N'
+		END AS member
+	FROM sales s
+	LEFT JOIN members mem 
+		ON s.customer_id = mem.customer_id
+	JOIN menu m 
+		ON s.product_id = m.product_id
+)
+SELECT 
+	*,
+    CASE 
+		WHEN member = 'N' THEN NULL
+        WHEN member = 'Y' THEN RANK() OVER(Partition by customer_id, member ORDER BY order_date) 
+	END as ranking
+FROM CTE_Membership_record;
+
+
+

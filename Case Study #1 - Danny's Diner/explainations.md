@@ -202,15 +202,17 @@
 ## Q12. Rank All The Things
 
 ### Approach
-- Used previous joined dataset
-- Applied ranking only for member purchases
-- Used CASE to assign NULL for non-member rows
+- Here we first use the previous query and create it into a CTE named CTE_Membership_record
+- Here first apply a case when statement on membership, if its N then null rank and if its Y then we apply ranking.
+- Now within this ranking is the main game. Here we partition by customer id and membership. This will create partition like this
+  - Main partition is customer id
+  - Sub partition is membership (Y and N) - this is the key. 
+- Now for the value where ranking is N we have already put value NULL as per first when condition so we dont need to do anything.
+- Now for the value where ranking is Y we have to apply ranking. here we partition by customer id and membership and apply ranking based on order date. so for each customer we will have two ranking one for N and one for Y.
+- Now we can select everything from the CTE and we will get our answer.
 
 ### Key Concept
 - Conditional window function
 
 ### Pattern Used
 - Selective ranking
-
-### Edge Case
-- Ranking should not be applied before membership
