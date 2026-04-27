@@ -1,16 +1,33 @@
 # 📊 8-Week SQL Challenge
 
-This repository contains my solutions to the 8 case studies from the #8WeekSQLChallenge by Data With Danny.
+This repository contains my solutions to the **8 Week SQL Challenge** by Data With Danny.
 
-It showcases my ability to solve real-world SQL problems and demonstrates my proficiency in SQL query writing, data analysis, and structured problem-solving.
-
-A special thanks to Data With Danny for creating these insightful and engaging SQL case studies! 👋🏻
+The goal of this project is to strengthen SQL fundamentals through real-world case studies and develop strong problem-solving patterns.
 
 ---
 
-## 📚 Table of Contents
+## 🧠 Skills Demonstrated
 
-Please find the solution links for the case studies below:
+- Joins  
+- Aggregations  
+- Window Functions  
+- Case Statements  
+- Subqueries  
+
+---
+
+## 📁 Repository Structure
+
+Each case study contains:
+
+- `schema.sql` → table creation and sample data  
+- `questions.md` → problem statements  
+- `solutions.sql` → clean and final SQL queries  
+- `explanations.md` → approach, patterns, and key learnings  
+
+---
+
+## 📚 Case Studies
 
 - Case Study #1: Danny's Diner  
 - Case Study #2: Pizza Runner  
@@ -23,18 +40,32 @@ Please find the solution links for the case studies below:
 
 ---
 
-## ⚠️ Important Note Regarding My Solutions
+## 💡 Learning Approach
 
-Hello visitors,
+Instead of only focusing on final answers, this repository emphasizes:
+- Understanding SQL patterns  
+- Writing clean and readable queries  
+- Handling edge cases  
 
-I have invested a significant amount of time solving these challenges and building this repository.
+---
 
-I encourage you to use this repo as a reference rather than simply copying the solutions. Try to understand the approach and logic behind each query.
+## 🙌 Acknowledgement
 
-The goal is to build strong problem-solving skills and a deep understanding of SQL—not just arrive at the final answer.
+Special thanks to Data With Danny for creating these insightful SQL case studies.
 
-If you have any questions or would like to discuss any solution, feel free to reach out.
+---
 
-Thanks for visiting, and all the best on your learning journey!
+## 📌 Note
+
+This repository is intended for learning and reference.  
+If you're working through the challenge, try solving the questions yourself before checking the solutions.
+
+---
+
+## 🔗 Connect With Me
+
+- LinkedIn: https://www.linkedin.com/in/vvsvivek/
+
+---
 
 — Vivek
